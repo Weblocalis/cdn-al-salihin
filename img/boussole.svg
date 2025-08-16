@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Boussole">
+  <circle cx="100" cy="100" r="95" stroke="#333" stroke-width="4" fill="#f8f9fa" />
+  <circle cx="100" cy="100" r="10" fill="#333" />
+  
+  <!-- Points cardinaux -->
+  <text x="100" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">N</text>
+  <text x="170" y="110" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">E</text>
+  <text x="100" y="190" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">S</text>
+  <text x="30" y="110" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">W</text>
+
+  <!-- Cercles concentriques décoratifs -->
+  <circle cx="100" cy="100" r="70" stroke="#aaa" stroke-width="1" fill="none" />
+  <circle cx="100" cy="100" r="40" stroke="#aaa" stroke-width="1" fill="none" />
+</svg>
