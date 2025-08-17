@@ -116,3 +116,34 @@ let menu, animate;
   // Auto update menu collapsed/expanded based on the themeConfig
   window.Helpers.setCollapsed(true, false);
 })();
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const today = new Date();
+  const options = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+
+  // Date grégorienne
+  document.getElementById('date-greg').textContent = 
+    today.toLocaleDateString('fr-FR', options);
+
+
+
+// Date Hijri via API fetch(`https://api.aladhan.com/v1/gToH?date=${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`)
+    .then(res => res.json())
+    .then(data => {
+      const hijri = data.data.hijri;
+      const hijriDate = `${hijri.weekday.en} ${hijri.day} ${hijri.month.en} ${hijri.year}`;
+      document.getElementById('date-hijri').textContent = hijriDate;
+    })
+    .catch(error => {
+      console.error('Erreur récupération date Hijri:', error);
+      document.getElementById('date-hijri').textContent = '—';
+    });
+});
