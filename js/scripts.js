@@ -43,8 +43,6 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 
-
-// Smooth scroll pour tous les liens internes
 // Smooth scroll pour les ancres internes
 document.addEventListener('DOMContentLoaded', () => {
   // Sélectionne tous les liens qui commencent par #
