@@ -42,4 +42,32 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+
+
+// Smooth scroll pour tous les liens internes
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const offset = 70; // ajuster selon la hauteur de ton header fixe
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const targetRect = target.getBoundingClientRect().top;
+            const targetPosition = targetRect - bodyRect - offset;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+
+            // Mettre le focus sur la section pour l'accessibilité
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+        }
+    });
 });
+
+
+
+
+}); // fin DOMContentLoaded
