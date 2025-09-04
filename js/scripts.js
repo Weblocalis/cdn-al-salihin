@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (mainNav) {
     new bootstrap.ScrollSpy(document.body, {
       target: '#mainNav',
-      rootMargin: '0px 0px -40%', // ajustable selon le design
+      rootMargin: '0px 0px -40%',
     });
   }
 
@@ -39,19 +39,15 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Fermer le menu mobile si on clique en dehors
+  document.addEventListener('click', (e) => {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (!navbarCollapse || !navbarCollapse.classList.contains('show')) return;
 
-
-// Fermer le menu mobile si on clique en dehors
-document.addEventListener('click', (e) => {
-  const navbarCollapse = document.querySelector('.navbar-collapse');
-  if (!navbarCollapse.classList.contains('show')) return; // menu fermé, rien à faire
-
-  // Vérifie si le clic est à l'intérieur du menu ou sur le bouton toggle
-  if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-    navbarToggler.click(); // ferme le menu
-  }
-});
-
+    if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+      navbarToggler.click();
+    }
+  });
 
   // ---------------------------
   // Smooth scroll + active link
@@ -67,24 +63,28 @@ document.addEventListener('click', (e) => {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
+
       const navbarHeight = mainNav ? mainNav.offsetHeight : 0;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
       window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     });
   });
 
   // activation automatique du lien pendant le scroll
   const setActiveLink = () => {
-    const scrollPos = window.scrollY + (mainNav ? mainNav.offsetHeight : 0) + 10; // offset léger
+    const scrollPos = window.scrollY + (mainNav ? mainNav.offsetHeight : 0) + 10;
+
     sections.forEach((section, i) => {
       const top = section.offsetTop;
       const bottom = top + section.offsetHeight;
       if (scrollPos >= top && scrollPos < bottom) {
         anchorLinks.forEach(link => link.classList.remove('active'));
-        anchorLinks[i].classList.add('active');
+        if (anchorLinks[i]) anchorLinks[i].classList.add('active');
       }
     });
   };
+
   document.addEventListener('scroll', setActiveLink);
   setActiveLink(); // initialisation
 
