@@ -39,6 +39,20 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+
+// Fermer le menu mobile si on clique en dehors
+document.addEventListener('click', (e) => {
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  if (!navbarCollapse.classList.contains('show')) return; // menu fermé, rien à faire
+
+  // Vérifie si le clic est à l'intérieur du menu ou sur le bouton toggle
+  if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+    navbarToggler.click(); // ferme le menu
+  }
+});
+
+
   // ---------------------------
   // Smooth scroll + active link
   // ---------------------------
