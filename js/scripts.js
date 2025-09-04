@@ -45,26 +45,25 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 // Smooth scroll pour tous les liens internes
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            e.preventDefault();
-            const offset = 70; // ajuster selon la hauteur de ton header fixe
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const targetRect = target.getBoundingClientRect().top;
-            const targetPosition = targetRect - bodyRect - offset;
+// Smooth scroll pour les ancres internes
+document.addEventListener('DOMContentLoaded', () => {
+  // Sélectionne tous les liens qui commencent par #
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+  anchorLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href');
+      const targetEl = document.querySelector(targetId);
 
-            // Mettre le focus sur la section pour l'accessibilité
-            target.setAttribute('tabindex', '-1');
-            target.focus({ preventScroll: true });
-        }
+      if (targetEl) {
+        e.preventDefault(); // Empêche le saut instantané
+        targetEl.scrollIntoView({
+          behavior: 'smooth',  // Animation fluide
+          block: 'start'       // Aligne le haut de la section en haut de la page
+        });
+      }
     });
+  });
 });
 
 
