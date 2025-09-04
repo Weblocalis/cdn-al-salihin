@@ -50,7 +50,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             e.preventDefault();
-            const offset = 70; // ajuster selon la hauteur de ton header fixe
+            const offset = document.querySelector('.navbar').offsetHeight;
             const bodyRect = document.body.getBoundingClientRect().top;
             const targetRect = target.getBoundingClientRect().top;
             const targetPosition = targetRect - bodyRect - offset;
