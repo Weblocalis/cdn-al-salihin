@@ -39,15 +39,17 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Fermer le menu mobile si on clique en dehors
-  document.addEventListener('click', (e) => {
+  // Fermer le menu mobile si on clique ou touche en dehors
+  const closeMobileMenu = (e) => {
     const navbarCollapse = document.querySelector('.navbar-collapse');
     if (!navbarCollapse || !navbarCollapse.classList.contains('show')) return;
 
     if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
       navbarToggler.click();
     }
-  });
+  };
+  document.addEventListener('click', closeMobileMenu);
+  document.addEventListener('touchstart', closeMobileMenu); // pour mobile tap
 
   // ---------------------------
   // Smooth scroll + active link
